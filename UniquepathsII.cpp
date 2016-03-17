@@ -1,0 +1,62 @@
+/*
+ leetcode Question 117: Unique Path II
+Unique Path II
+
+Follow up for "Unique Paths":
+Now consider if some obstacles are added to the grids. How many unique paths would there be?
+An obstacle and empty space is marked as 1 and 0 respectively in the grid.
+For example,
+There is one obstacle in the middle of a 3x3 grid as illustrated below.
+
+[
+  [0,0,0],
+  [0,1,0],
+  [0,0,0]
+]
+
+The total number of unique paths is 2.
+
+*/
+
+
+class Solution {
+public:
+    int uniquePathsWithObstacles(vector<vector<int>>& obstacleGrid) {
+    if(obstacleGrid.empty() || obstacleGrid[0].empty()||obstacleGrid[0][0]==1) return 0;
+    int m,n;
+    m = obstacleGrid.size();
+    n = obstacleGrid[0].size();
+
+    //if(obstacleGrid[0][0]==0)
+    //return 1;
+	int i,j,a[m][n];
+	a[0][0] = 1;
+    for(i=1;i<m;i++)
+    {
+		if(obstacleGrid[i][0] == 1)
+		a[i][0] = 0;
+		else
+		a[i][0] = a[i-1][0];
+	}
+	for(j=1;j<n;j++)
+	{
+		if(obstacleGrid[0][j] == 1)
+		a[0][j] = 0;
+		else
+		a[0][j] = a[0][j-1];
+	}
+	for(i=1;i<m;i++)
+	{
+		for(j=1;j<n;j++)
+		{
+			if(obstacleGrid[i][j] == 1)
+			a[i][j] = 0;
+			else
+			a[i][j] = a[i-1][j] + a[i][j-1];
+		}
+	}
+	
+	return a[m-1][n-1];
+}
+    
+};
