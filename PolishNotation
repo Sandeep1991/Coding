@@ -1,0 +1,84 @@
+
+
+ONP - Transform the Expression
+#stack
+Transform the algebraic expression with brackets into RPN form (Reverse Polish Notation). Two-argument operators: +, -, *, /, ^ (priority from the lowest to the highest), brackets ( ). Operands: only letters: a,b,...,z. Assume that there is only one RPN form (no expressions like a*b*c).
+
+Input
+
+t [the number of expressions <= 100]
+expression [length <= 400]
+[other expressions]
+Text grouped in [ ] does not appear in the input file.
+
+Output
+
+The expressions in RPN form, one per line.
+Example
+
+Input:
+3
+(a+(b*c))
+((a+b)*(z+x))
+((a+t)*((b+(a+c))^(c+d)))
+
+Output:
+abc*+
+ab+zx+*
+at+bac++cd+^*
+
+
+
+#include<iostream>
+#include<cstring>
+#include<string>
+using namespace std;
+
+char stack[500];
+int top=-1;
+void push(char a)
+{
+    stack[++top]=a;
+}
+ 
+char pop()
+{
+ 
+    if(top!=-1)
+	   return (stack[top--]);
+}
+
+int main()
+{
+	int t;
+	cin>>t;
+	char c;
+	while(t--)
+	{
+		string a;
+		cin>>a;
+		for(int i = 0; i<a.length();i++)
+		{
+			if(a[i]=='(');
+			
+			else if( a[i] =='+' || a[i] == '-' || a[i] == '*' || a[i] == '/' || a[i] == '^')
+				push(a[i]);
+			else if(a[i] ==')')
+				{
+				c= pop();			
+				cout<<c;
+			
+			}
+			else
+				cout<<a[i];
+		}
+		while(top!=-1)
+		{
+			cout<<pop();
+			
+			
+		}
+		cout<<endl;
+	}
+	return 0;
+}
