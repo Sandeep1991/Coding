@@ -1,0 +1,30 @@
+"""
+Hacker rank challenge https://www.hackerrank.com/contests/vgsa-cs-codeathon/challenges/string-reduction
+"""
+
+
+
+
+
+
+
+#!/usr/bin/py
+# Head ends here
+def stringReduction(n):
+    a = n.count('a')
+    b = n.count('b')
+    c = n.count('c')
+    x = [a,b,c]
+    if x.count(0)==2:
+        return len(n)
+    if (a%2==0 and b%2==0 and c%2==0) or (a%2!=0 and b%2!=0 and c%2!=0):
+        return 2
+    
+    return 1
+
+# Tail starts here
+if __name__ == '__main__':
+    t = input()
+    for i in range(0,t):
+        a=raw_input()
+        print stringReduction(a)
