@@ -1,0 +1,26 @@
+#include <bits/stdc++.h>
+
+/*HN
+ * UVa 10550
+ * This is MagicWish :)
+ */
+using namespace std;
+
+int main()
+{
+	int a,b,c,d;
+	while(cin>>a>>b>>c>>d)
+	{
+		if(!a && !b && !c && !d) break;
+		int ans = 1080; // 360 * 3
+		if(a<b) ans += (40 + a-b) * 9;
+		else ans += (a-b)*9;
+		if(b>c) ans += (40 + c-b) * 9;
+		else ans += (c-b)*9;
+		if(c<d) ans += (40 + c-d) * 9;
+		else ans += (c-d)*9;
+		cout<<ans<<endl;
+		
+	}
+	return 0;
+}
