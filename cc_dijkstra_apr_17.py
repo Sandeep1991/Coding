@@ -3,7 +3,7 @@ def minDistance(dist,sptSet,V):
 	for v in range(V):
 		if sptSet[v]==0 and dist[v] <= mini:
 			mini=dist[v]; min_index=v;
-	print min_index, mini
+	#print min_index, mini
 	return min_index
 
 
@@ -19,15 +19,17 @@ def dijkstra(graph,src):
 		sptSet[i]=0
 	'''
 	dist[src]=0
+	#print dist
 	for cnt in range(0,len(graph)-1):
 		u = minDistance(dist,sptSet,len(graph))
 		sptSet[u]=1
 		for v in range(0,len(graph)):
-			if sptSet[v]==0 and graph[u][v] and dist[u] != 1000000 and dist[u] + graph[u][v] < dist[v]:
-				dist[v] = dist[u]
+			if sptSet[v]==0 and graph[u][v] != 0 and dist[u] != 1000000 and dist[u] + graph[u][v] < dist[v]:
+				dist[v] = dist[u] + graph[u][v]
+				#print dist[v]
 	for i in range(0,len(graph)):
 		print dist[i],
-
+	print "\n"
 
 
 
@@ -44,13 +46,13 @@ def main():
 			for indy in range(0,k):
 				if indx != indy:
 					graph[indx][indy]=x
-		print graph
+		#print graph
 		for j in range(0,m):
 			indx,indy,w=map(int,raw_input().split(' '))
 			indx=indx-1; indy=indy-1
 			graph[indx][indy]=w
 			graph[indy][indx]=w
-		print graph
+		#print graph
 		dijkstra(graph,s)
 			
 
