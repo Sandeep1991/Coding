@@ -7,13 +7,13 @@
 #include <unordered_map>
 
 using namespace std;
-//https://www.quora.com/What-is-the-most-simple-efficient-C++-code-for-Dijkstras-shortest-path-algorithm
+
 typedef vector<int> vi;
 typedef pair<int,int> pii;
 typedef vector< pii > vii;
 #define INF 0x3f3f3f3f
  
-vii *G;   // Graph
+vector<vii>G;   // Graph
 vi Dist;  // for storing the distance of every other node from source.
 /*==========================================*/
 void Dijkstra(int source, int N) {
@@ -39,14 +39,14 @@ int main()
 {
 	int n,m;
 	cin>>n>>m;
-	G = new vii[n+1];
-	
+	//G = new vii[n+1];
+	G.resize(n+1);
 	int u,v,w,s;
 	for (int i=0;i<m;i++)
 	{
 		cin>>u>>v>>w;
 		G[u].push_back({v,w});
-		//G[v].push_back({u,w});
+		G[v].push_back({u,w});
 	}
 	s = 1;
 	Dijkstra(s,n+1);
